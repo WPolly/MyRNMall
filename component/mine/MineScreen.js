@@ -14,7 +14,7 @@ var MineScreen = React.createClass({
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                    Mine
+                    哈哈哈
                 </Text>
             </View>
         );

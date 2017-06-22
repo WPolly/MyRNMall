@@ -5,34 +5,74 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    TouchableOpacity,
+    TextInput,
+    Image,
+    Platform
 } from 'react-native';
 
-var HomeScreen = React.createClass({
+const Dimensions = require('Dimensions');
+const {width, height} = Dimensions.get('window');
+
+const HomeScreen = React.createClass({
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Home
-                </Text>
+                {/*首页搜索栏*/}
+                {this.renderSearchBar()}
             </View>
         );
+    },
+
+    renderSearchBar() {
+        return(
+                <View style={styles.searchBarStyle}>
+                    <TouchableOpacity onPress={()=>alert('广州')}>
+                        <Text style={styles.textAreaStyle}>广州</Text>
+                    </TouchableOpacity>
+
+                    <TextInput placeholder='输入商家, 品类, 商圈'
+                               style={styles.searchInputStyle}/>
+
+                    <TouchableOpacity onPress={()=>alert('消息')}>
+                        <Image source={{uri:'icon_homepage_message'}}
+                               style={styles.searchBarRightIconStyle}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=>alert('扫描')}>
+                        <Image source={{uri:'icon_homepage_scan'}}
+                               style={styles.searchBarRightIconStyle}/>
+                    </TouchableOpacity>
+                </View>
+            );
     }
-})
+});
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+    searchBarStyle: {
+        height: Platform.OS === 'ios' ? 64 : 44,
+        width: width,
+        backgroundColor:'rgba(255,96,0,1.0)',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        color: 'blue',
+    searchInputStyle: {
+        flexDirection: 'row',
+        width: width*0.7,
+        backgroundColor:'white',
+        marginTop: 7,
+        marginBottom: 7,
+        borderRadius:13,
+    },
+    textAreaStyle: {
+        color:'white',
+    },
+    searchBarRightIconStyle: {
+        width: 24,
+        height: 24,
     },
 });
 

@@ -6,35 +6,50 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    Platform,
+    Image,
+    TouchableOpacity
 } from 'react-native';
 
-var MoreScreen = React.createClass({
+const MoreScreen = React.createClass({
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    More
+                <Text style={styles.toolbarTitleStyle}>
+                    更多
                 </Text>
+                <TouchableOpacity onPress={()=>alert('setting')}
+                                  style={styles.rightSettingView}>
+                    <Image source={{uri:'icon_mine_setting'}}
+                           style={styles.toolbarSettingIconStyle}/>
+                </TouchableOpacity>
             </View>
         );
     }
-})
+});
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: Platform.OS === 'ios' ? 64 : 44,
+        backgroundColor:'rgba(255,96,0,1.0)',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        flexDirection: 'row'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        color: 'blue',
+    toolbarTitleStyle: {
+        color: 'white',
+        fontSize: 16,
     },
+    toolbarSettingIconStyle: {
+        width:Platform.OS === 'ios' ? 28: 24,
+        height:Platform.OS === 'ios' ? 28: 24,
+    },
+    rightSettingView: {
+        position: 'absolute',
+        right: 8,
+    }
 });
 
 module.exports = MoreScreen;

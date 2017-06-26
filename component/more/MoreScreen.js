@@ -9,14 +9,28 @@ import {
     View,
     Platform,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
+
+var CommonItem = require('./CommonItemMore');
 
 const MoreScreen = React.createClass({
 
     render() {
         return (
             <View style={styles.container}>
+                {this.renderToolbar()}
+                <ScrollView>
+                    <CommonItem title="扫一扫"/>
+                </ScrollView>
+            </View>
+        );
+    },
+
+    renderToolbar() {
+        return (
+            <View style={styles.toolBarContainer}>
                 <Text style={styles.toolbarTitleStyle}>
                     更多
                 </Text>
@@ -26,26 +40,33 @@ const MoreScreen = React.createClass({
                            style={styles.toolbarSettingIconStyle}/>
                 </TouchableOpacity>
             </View>
-        );
+        )
     }
 });
 
 const styles = StyleSheet.create({
     container: {
+        flex:1
+    },
+
+    toolBarContainer: {
         height: Platform.OS === 'ios' ? 64 : 44,
         backgroundColor:'rgba(255,96,0,1.0)',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
     },
+
     toolbarTitleStyle: {
         color: 'white',
         fontSize: 16,
     },
+
     toolbarSettingIconStyle: {
         width:Platform.OS === 'ios' ? 28: 24,
         height:Platform.OS === 'ios' ? 28: 24,
     },
+
     rightSettingView: {
         position: 'absolute',
         right: 8,

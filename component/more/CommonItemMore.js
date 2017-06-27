@@ -8,7 +8,8 @@ import {
     View,
     Platform,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Switch
 } from 'react-native';
 
 const CommonItem = React.createClass({
@@ -29,26 +30,60 @@ const CommonItem = React.createClass({
 
         render() {
             return (
-                <View style={styles.container}>
-                    <Text>
-                        {this.props.title}
-                    </Text>
-                </View>
+                <TouchableOpacity>
+                    <View style={styles.container}>
+                        <Text style={styles.titleStyle}>
+                            {this.props.title}
+                        </Text>
+
+                        {this.renderRightView()}
+                    </View>
+                </TouchableOpacity>
             )
         },
+
+        renderRightView() {
+            if (this.props.isSwitch) {
+                return (
+                    <Switch value={this.state.isSwitchOn}
+                            onValueChange={() => {
+                                this.setState({isSwitchOn: !this.state.isSwitchOn})
+                            }}/>
+                )
+            } else {
+                return (
+                    <View style={styles.rightViewStyle}>
+                        <Text style={{marginRight: 5, fontSize: 10, color: 'gray'}}>{this.props.rightDsc}</Text>
+                        <Image source={{uri: 'icon_cell_right_arrow'}}
+                               style={{width: 7, height: 11}}/>
+                    </View>
+                )
+            }
+        }
     }
 );
 
 const styles = StyleSheet.create({
         container: {
-            height:Platform.OS === 'ios' ? 40: 30,
-            backgroundColor:'white',
-            borderBottomColor:'#dddddd',
+            height: Platform.OS === 'ios' ? 40 : 42,
+            backgroundColor: 'white',
+            borderBottomColor: '#dddddd',
             borderBottomWidth: 0.5,
             flexDirection: 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'space-between'
         },
 
+        titleStyle: {
+            color: '#333333',
+            paddingLeft: 8,
+        },
+
+        rightViewStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginRight: 8,
+        }
     }
 );
 

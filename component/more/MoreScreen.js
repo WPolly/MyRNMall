@@ -13,7 +13,7 @@ import {
     ScrollView
 } from 'react-native';
 
-var CommonItem = require('./CommonItemMore');
+const CommonItem = require('./CommonItemMore');
 
 const MoreScreen = React.createClass({
 
@@ -22,7 +22,29 @@ const MoreScreen = React.createClass({
             <View style={styles.container}>
                 {this.renderToolbar()}
                 <ScrollView>
-                    <CommonItem title="扫一扫"/>
+                    <View style={styles.viewMargin}>
+                        <CommonItem title="扫一扫"/>
+                    </View>
+
+                    <View style={styles.viewMargin}>
+                        <CommonItem title="省流量模式" isSwitch="true"/>
+                        <CommonItem title="消息提醒"/>
+                        <CommonItem title="邀请好友"/>
+                        <CommonItem title="清空缓存" rightDsc="1.94M"/>
+                    </View>
+
+                    <View style={styles.viewMargin}>
+                        <CommonItem title="意见反馈"/>
+                        <CommonItem title="问卷调查"/>
+                        <CommonItem title="支付帮助"/>
+                        <CommonItem title="网络诊断"/>
+                        <CommonItem title="关于美团"/>
+                        <CommonItem title="我要应聘"/>
+                    </View>
+
+                    <View style={styles.viewMargin}>
+                        <CommonItem title="精品应用"/>
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -70,6 +92,10 @@ const styles = StyleSheet.create({
     rightSettingView: {
         position: 'absolute',
         right: 8,
+    },
+
+    viewMargin: {
+        marginTop: 10,
     }
 });
 

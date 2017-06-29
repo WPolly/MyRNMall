@@ -8,7 +8,7 @@ import {
     View
 } from 'react-native';
 
-var ShopScreen = React.createClass({
+const ShopScreen = React.createClass({
 
     render() {
         return (
@@ -19,7 +19,7 @@ var ShopScreen = React.createClass({
             </View>
         );
     }
-})
+});
 
 const styles = StyleSheet.create({
     container: {

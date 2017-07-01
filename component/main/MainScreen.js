@@ -18,7 +18,7 @@ const ShopScreen = require('../shop/ShopScreen');
 const MineScreen = require('../mine/MineScreen');
 const MoreScreen = require('../more/MoreScreen');
 
-var MainScreen = React.createClass({
+const MainScreen = React.createClass({
         getInitialState() {
             return {
                 selectedTab: 'home'
@@ -49,7 +49,8 @@ var MainScreen = React.createClass({
                     renderSelectedIcon={() => <Image source={{uri: iconSelected}}
                                                      style={styles.bottomIconStyle}/>}
                     onPress={() => this.setState({selectedTab: selectedTab})}
-                    selected={this.state.selectedTab === selectedTab}>
+                    selected={this.state.selectedTab === selectedTab}
+                    selectedTitleStyle={styles.bottomTextStyle}>
                     {component}
                 </TabNavigatorItem>
             )
@@ -66,6 +67,9 @@ const styles = StyleSheet.create({
     bottomIconStyle: {
         width: Platform.OS === 'ios' ? 30 : 25,
         height: Platform.OS === 'ios' ? 30 : 25
+    },
+    bottomTextStyle: {
+        color: '#fd4b1f',
     }
 });
 

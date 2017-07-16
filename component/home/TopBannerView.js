@@ -1,19 +1,18 @@
 /**
  * Created by Administrator on 2017/6/25.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
     View,
     ScrollView,
-    ListView,
-    Image
 } from 'react-native';
 
 const Dimensions = require('Dimensions');
 const {width} = Dimensions.get('window');
+const TopBannerListView = require('./TopBannerListView');
+const data = require('../../local_data/TopMenu.json');
 
 const ToBannerView = React.createClass({
 
@@ -30,14 +29,24 @@ const ToBannerView = React.createClass({
                                 showsHorizontalScrollIndicator={false}
                                 pagingEnabled={true}
                                 onMomentumScrollEnd={this.refreshIndicators}>
-                        <View style={{width: width, height: 120, backgroundColor: 'red'}}/>
-                        <View style={{width: width, height: 120, backgroundColor: 'green'}}/>
+                        {this.renderPager()}
                     </ScrollView>
                     <View style={styles.dotsContainerStyle}>
                         {this.renderIndicators()}
                     </View>
                 </View>
             );
+        },
+
+        renderPager() {
+            let listArr = data.data;
+            let pagers = [];
+            for (let i=0; i<listArr.length; i++) {
+                pagers.push(
+                    <TopBannerListView key={i} dataArr={listArr[i]}/>
+                );
+            }
+            return pagers;
         },
 
         renderIndicators() {
@@ -48,7 +57,8 @@ const ToBannerView = React.createClass({
                           style={{
                               fontSize: 20,
                               fontWeight: 'bold',
-                              color: this.state.activePage === i ? 'orange' : 'gray'
+                              color: this.state.activePage === i ? 'orange' : 'gray',
+                              marginRight:5
                           }}>
                         &bull;
                     </Text>
@@ -59,17 +69,21 @@ const ToBannerView = React.createClass({
 
         refreshIndicators(e) {
             let offset = e.nativeEvent.contentOffset.x;
-            let pageIndex = offset/width;
-            this.setState({activePage:pageIndex});
+            let pageIndex = offset / width;
+            this.setState({activePage: pageIndex});
         }
     }
 );
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        width: width,
+        height: 120,
+        backgroundColor: 'white'
+    },
 
     dotsContainerStyle: {
-        backgroundColor: 'yellow',
+        backgroundColor: 'white',
         width: width,
         flexDirection: 'row',
         justifyContent: 'center',

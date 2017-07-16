@@ -14,6 +14,7 @@ import {
 
 const Dimensions = require('Dimensions');
 const {width, height} = Dimensions.get('window');
+const TopBannerView = require("./TopBannerView");
 
 const HomeScreen = React.createClass({
 
@@ -22,6 +23,7 @@ const HomeScreen = React.createClass({
             <View style={styles.container}>
                 {/*首页搜索栏*/}
                 {this.renderSearchBar()}
+                <TopBannerView/>
             </View>
         );
     },

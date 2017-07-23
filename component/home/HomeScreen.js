@@ -16,6 +16,7 @@ const Dimensions = require('Dimensions');
 const {width, height} = Dimensions.get('window');
 const TopBannerView = require("./TopBannerView");
 const HomeMiddleFirst = require('./HomeMiddleFirst');
+const HomeMiddleSecond = require('./HomeMiddleSecond');
 
 const HomeScreen = React.createClass({
 
@@ -26,6 +27,7 @@ const HomeScreen = React.createClass({
                 {this.renderSearchBar()}
                 <TopBannerView/>
                 <HomeMiddleFirst/>
+                <HomeMiddleSecond/>
             </View>
         );
     },

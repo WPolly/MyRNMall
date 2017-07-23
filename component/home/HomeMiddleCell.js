@@ -31,7 +31,8 @@ const HomeMiddleCell = React.createClass({
                     <Text style={{color: this.props.titleColor}}>{this.props.title}</Text>
                     <Text style={{fontSize:11}}>{this.props.subTitle}</Text>
                 </View>
-                <Image source={{uri: this.props.rightIconUri}} style={{width: 60, height: 30}}/>
+                <Image source={{uri: this.props.rightIconUri}}
+                       style={{width: 80, height: 40, resizeMode: 'contain'}}/>
             </View>
         );
     }
